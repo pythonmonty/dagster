@@ -95,6 +95,12 @@ dagsterWebserver:
   # The maximum overflow size of the sqlalchemy pool. Set to -1 to disable.
   dbPoolMaxOverflow: ~
 
+  # The number of connections to keep open in the sqlalchemy connection pool.
+  # Defaults to 1 if not set.
+  # Set to 0 to disable persistent connections, which is required for compatibility
+  # with pgBouncer in transaction-mode pooling.
+  dbPoolSize: ~
+
   # The log level of the uvicorn web server, defaults to warning if not set
   logLevel: ~
 
