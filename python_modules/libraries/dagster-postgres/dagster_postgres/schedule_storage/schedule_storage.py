@@ -115,12 +115,12 @@ class PostgresScheduleStorage(SqlScheduleStorage, ConfigurableClass):
         self.optimize()
 
     def optimize_for_webserver(
-        self, statement_timeout: int, pool_recycle: int, max_overflow: int
+        self, statement_timeout: int, pool_recycle: int, max_overflow: int, pool_size: int = 1
     ) -> None:
         # When running in dagster-webserver, hold an open connection and set statement_timeout
         kwargs: dict[str, Any] = {
             "isolation_level": "AUTOCOMMIT",
-            "pool_size": 1,
+            "pool_size": pool_size,
             "pool_recycle": pool_recycle,
             "max_overflow": max_overflow,
         }
